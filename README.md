@@ -38,7 +38,7 @@
 ![image](https://github.com/user-attachments/assets/04eaeba5-0e9a-4780-be43-a4b7d0c5d730)
 
 #### 3.2 Mealschedules List
-![image](https://github.com/user-attachments/assets/558bf5f9-63af-4613-a4f5-aa04678e9b94)
+![image](https://github.com/user-attachments/assets/616cdba2-5fa9-426b-8d0c-7d462d60f24e)
 ![image](https://github.com/user-attachments/assets/64c031ae-dc05-4626-824c-585ed524589b)
 
 ### 4. Auth Page:
