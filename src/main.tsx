@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.tsx';
 import './index.css';
@@ -9,11 +8,10 @@ import { ToastContainer } from 'react-toastify'; // lib: всплывающие 
 import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <Provider store={store}>
-    {/* <React.StrictMode> */}
+    <Provider store={store}>
+      {/* <React.StrictMode> */}
       <App />
-      <ToastContainer position='bottom-left' autoClose={5000}/> 
-    {/* </React.StrictMode> */}
-  </Provider>
-  ,
+      <ToastContainer position="bottom-left" autoClose={5000} />
+      {/* </React.StrictMode> */}
+    </Provider>,
 );
