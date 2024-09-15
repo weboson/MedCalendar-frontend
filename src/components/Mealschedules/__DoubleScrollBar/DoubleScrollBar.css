@@ -1,0 +1,70 @@
+
+/* //! Диапазон (DoubleScrollBar.tsx) */
+
+ .range-slider {
+    height: 5px;
+    position: relative;
+    background-color: #e1e9f6;
+    border-radius: 2px;
+  }
+  .range-selected {
+    height: 100%;
+     left: 30%; 
+     right: 30%; 
+     position: absolute; 
+     border-radius: 5px; 
+     background-color: #2268f3; 
+   } 
+
+  
+  .range-input {
+    position: relative;
+  }
+  
+  
+  .range-input input {
+    /* соединяем два input - поднимая их на один уровень */
+    position: absolute;
+    width: 100%;
+    height: 5px;
+    top: -7px;
+    /* убираем оригинальные полоски у input  */
+    background: none;
+    /* убираем их реакцию по-умолчанию, так как они друг друга перекрывают - и реагирует только тот кто "сверху" */
+    pointer-events: none; 
+    -webkit-appearance: none;
+  }
+  
+  /* префиксы для установки кастомного реагирования на шарики */
+  /* для браузеров Chrome, Safari, Opera; */
+   .range-input input::-webkit-slider-thumb {
+    /* нарисуем свои шарики (points) */
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: 3px solid #2268f3;
+    background-color: #fff; 
+    /* кастомное событие */
+    pointer-events: auto;
+    -webkit-appearance: none;
+  } 
+
+  /* тоже самое для браузеров Mozilla Firefox; */
+  .range-input input::-moz-range-thumb {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: 3px solid #2268f3;
+    pointer-events: auto;
+    -moz-appearance: none;
+  }
+
+  /* тоже самое для браузеров Internet Explorer. */
+  .range-input input::-ms-thumb  {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: 3px solid #2268f3;
+    pointer-events: auto;
+    -ms-appearance: none;
+  }

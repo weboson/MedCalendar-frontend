@@ -1,0 +1,76 @@
+* {
+    box-sizing: border-box;
+}
+
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+html, body {
+    margin: 0;
+    padding: 0;
+} 
+
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+code {
+    font-family: source-code-pro;
+}
+
+#root {
+    height: 100vh;   /*! главная высота */ /* index.css(100vh), cs_calendarHeader.tsx(4vh), sc_Monitor.tsx(7vh), sc_DayGrid.tsx(89vh)/ */
+    display: flex;
+    align-items: start;
+    justify-content: center;
+}
+
+/* шрифт для страницы рецепта (/recipes)  */
+@font-face {
+    font-family: 'Raleway';
+    src: url("./assets/Raleway-Italic-VariableFont_wght.ttf") format('ttf');
+}
+
+/* menu (Header.tsx) - скрывается (скролл вниз) или появляется (скролл вверх)   */
+/* важное условие родитель (Home.tsx) должен иметь "min-height: 100%", НО НЕ просто height: 100% И НЕ 100vh*/
+.header_display {
+    /* transition - для анимации */
+    transition: transform 400ms ease;
+    /* transform: translateY(-100%); */
+    animation-duration: 500ms;
+    position: sticky; /* or  sticky*/
+    top: 0;
+    z-index: 2;
+}
+
+#popup {
+    display: flex; 
+    position: fixed;
+    flex-direction: column; 
+    margin: 20px;
+    z-index: 2; 
+    background-color: #E6E6E6; 
+    color: #565759; 
+    width: 300px;
+    height: 400px;
+    /* min-width: fit-content; // шириной в контент // положение меняется в src\service\handler_forPopup.tsx
+    min-height: fit-content; // высотой в контент */
+    font-family: Roboto, serif;
+    line-height: 1;
+    padding: 20px;
+    border: 6px solid #565759;
+    transition: "1s ease-in"; 
+}   
+
+
+/* Стили Warning - стили ячейки, когда текущее время совпадает со временем приёма лекарств */
+/* сам класс назначается в GridDayWithHours.tsx */
+.warningClass {
+    /* background-color: #3d0d0d; */
+    color: #ff0000;
+    width: 400px;
+}
