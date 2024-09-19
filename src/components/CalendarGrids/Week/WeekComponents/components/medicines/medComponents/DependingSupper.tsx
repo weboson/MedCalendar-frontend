@@ -31,188 +31,193 @@ const DependingSupper: FC<IProps> = memo(
     lastMealWeekdays = lastMealWeekdays.clone();
     lastMealWeekend = lastMealWeekend.clone();
 
-    switch (
-      med.position // до/вовремя/после
-    ) {
-      case 'before': //! ДО ужина
-        return (
-          // weekday
-          dayItem.day() !== 6 && dayItem.day() !== 0
-            ? halfHourItem.isSame(
-                lastMealWeekdays
-                  .subtract(med.interval.minute, 'minute')
-                  .subtract(med.interval.hour, 'hour'),
-                'hour',
-              ) &&
-                lastMealWeekdays.clone().minute() - halfHourItem.minute() >=
-                  0 && // 22:30 - 22:21 >= 0  and < 30
-                lastMealWeekdays.clone().minute() - halfHourItem.minute() <
-                  30 && (
-                  <>
-                    {currentDayForWirning && (
-                      <HelperWarningMarker
-                        halfHourItem={halfHourItem}
-                        currentDate={currentDate}
+    if (med) {
+      switch (
+        med.position // до/вовремя/после
+      ) {
+        case 'before': //! ДО ужина
+          return (
+            // weekday
+            dayItem.day() !== 6 && dayItem.day() !== 0
+              ? halfHourItem.isSame(
+                  lastMealWeekdays
+                    .subtract(med.interval.minute, 'minute')
+                    .subtract(med.interval.hour, 'hour'),
+                  'hour',
+                ) &&
+                  lastMealWeekdays.clone().minute() - halfHourItem.minute() >=
+                    0 && // 22:30 - 22:21 >= 0  and < 30
+                  lastMealWeekdays.clone().minute() - halfHourItem.minute() <
+                    30 && (
+                    <>
+                      {currentDayForWirning && (
+                        <HelperWarningMarker
+                          halfHourItem={halfHourItem}
+                          currentDate={currentDate}
+                        />
+                      )}
+                      <RiMedicineBottleLine
+                        style={{
+                          color: 'red',
+                        }}
                       />
-                    )}
-                    <RiMedicineBottleLine
-                      style={{
-                        color: 'red',
-                      }}
-                    />
-                    <WrapperSpanWeek className={`medElemUnic${med.id}`}>
-                      {`${med.title}`}
-                    </WrapperSpanWeek>
-                    <br />
-                  </>
-                )
-            : // weekend
-              halfHourItem.isSame(
-                lastMealWeekend
-                  .subtract(med.interval.minute, 'minute')
-                  .subtract(med.interval.hour, 'hour'),
-                'hour',
-              ) &&
-                lastMealWeekend.clone().minute() - halfHourItem.minute() >= 0 && // 22:30 - 22:21 >= 0  and < 30
-                lastMealWeekend.clone().minute() - halfHourItem.minute() <
-                  30 && (
-                  <>
-                    {currentDayForWirning && (
-                      <HelperWarningMarker
-                        halfHourItem={halfHourItem}
-                        currentDate={currentDate}
+                      <WrapperSpanWeek className={`medElemUnic${med.id}`}>
+                        {`${med.title}`}
+                      </WrapperSpanWeek>
+                      <br />
+                    </>
+                  )
+              : // weekend
+                halfHourItem.isSame(
+                  lastMealWeekend
+                    .subtract(med.interval.minute, 'minute')
+                    .subtract(med.interval.hour, 'hour'),
+                  'hour',
+                ) &&
+                  lastMealWeekend.clone().minute() - halfHourItem.minute() >=
+                    0 && // 22:30 - 22:21 >= 0  and < 30
+                  lastMealWeekend.clone().minute() - halfHourItem.minute() <
+                    30 && (
+                    <>
+                      {currentDayForWirning && (
+                        <HelperWarningMarker
+                          halfHourItem={halfHourItem}
+                          currentDate={currentDate}
+                        />
+                      )}
+                      <RiMedicineBottleLine
+                        style={{
+                          color: 'red',
+                        }}
                       />
-                    )}
-                    <RiMedicineBottleLine
-                      style={{
-                        color: 'red',
-                      }}
-                    />
-                    <WrapperSpanWeek className={`medElemUnic${med.id}`}>
-                      {`${med.title}`}
-                    </WrapperSpanWeek>
-                    <br />
-                  </>
-                )
-        );
-        break;
-      case 'while': //! ВОВРЕМЯ ужина
-        return (
-          // weekday
-          dayItem.day() !== 6 && dayItem.day() !== 0
-            ? halfHourItem.isSame(lastMealWeekdays, 'hour') &&
-                lastMealWeekdays.clone().minute() - halfHourItem.minute() >=
-                  0 && // 22:30 - 22:21 >= 0  and < 30
-                lastMealWeekdays.clone().minute() - halfHourItem.minute() <
-                  30 && (
-                  <>
-                    {currentDayForWirning && (
-                      <HelperWarningMarker
-                        halfHourItem={halfHourItem}
-                        currentDate={currentDate}
+                      <WrapperSpanWeek className={`medElemUnic${med.id}`}>
+                        {`${med.title}`}
+                      </WrapperSpanWeek>
+                      <br />
+                    </>
+                  )
+          );
+          break;
+        case 'while': //! ВОВРЕМЯ ужина
+          return (
+            // weekday
+            dayItem.day() !== 6 && dayItem.day() !== 0
+              ? halfHourItem.isSame(lastMealWeekdays, 'hour') &&
+                  lastMealWeekdays.clone().minute() - halfHourItem.minute() >=
+                    0 && // 22:30 - 22:21 >= 0  and < 30
+                  lastMealWeekdays.clone().minute() - halfHourItem.minute() <
+                    30 && (
+                    <>
+                      {currentDayForWirning && (
+                        <HelperWarningMarker
+                          halfHourItem={halfHourItem}
+                          currentDate={currentDate}
+                        />
+                      )}
+                      <RiMedicineBottleLine
+                        style={{
+                          color: 'red',
+                        }}
                       />
-                    )}
-                    <RiMedicineBottleLine
-                      style={{
-                        color: 'red',
-                      }}
-                    />
-                    <WrapperSpanWeek className={`medElemUnic${med.id}`}>
-                      {`${med.title}`}
-                    </WrapperSpanWeek>
-                    <br />
-                  </>
-                )
-            : // weekend
-              halfHourItem.isSame(lastMealWeekend, 'hour') &&
-                lastMealWeekend.clone().minute() - halfHourItem.minute() >= 0 && // 22:30 - 22:21 >= 0  and < 30
-                lastMealWeekend.clone().minute() - halfHourItem.minute() <
-                  30 && (
-                  <>
-                    {currentDayForWirning && (
-                      <HelperWarningMarker
-                        halfHourItem={halfHourItem}
-                        currentDate={currentDate}
+                      <WrapperSpanWeek className={`medElemUnic${med.id}`}>
+                        {`${med.title}`}
+                      </WrapperSpanWeek>
+                      <br />
+                    </>
+                  )
+              : // weekend
+                halfHourItem.isSame(lastMealWeekend, 'hour') &&
+                  lastMealWeekend.clone().minute() - halfHourItem.minute() >=
+                    0 && // 22:30 - 22:21 >= 0  and < 30
+                  lastMealWeekend.clone().minute() - halfHourItem.minute() <
+                    30 && (
+                    <>
+                      {currentDayForWirning && (
+                        <HelperWarningMarker
+                          halfHourItem={halfHourItem}
+                          currentDate={currentDate}
+                        />
+                      )}
+                      <RiMedicineBottleLine
+                        style={{
+                          color: 'red',
+                        }}
                       />
-                    )}
-                    <RiMedicineBottleLine
-                      style={{
-                        color: 'red',
-                      }}
-                    />
-                    <WrapperSpanWeek className={`medElemUnic${med.id}`}>
-                      {`${med.title}`}
-                    </WrapperSpanWeek>
-                    <br />
-                  </>
-                )
-        );
-        break;
-      case 'after': //! ПОСЛЕ ужина
-        return (
-          // weekday
-          dayItem.day() !== 6 && dayItem.day() !== 0
-            ? halfHourItem.isSame(
-                lastMealWeekdays
-                  .add(med.interval.minute, 'minute')
-                  .add(med.interval.hour, 'hour'),
-                'hour',
-              ) &&
-                lastMealWeekdays.clone().minute() - halfHourItem.minute() >=
-                  0 && // 22:30 - 22:21 >= 0  and < 30
-                lastMealWeekdays.clone().minute() - halfHourItem.minute() <
-                  30 && (
-                  <>
-                    {currentDayForWirning && (
-                      <HelperWarningMarker
-                        halfHourItem={halfHourItem}
-                        currentDate={currentDate}
+                      <WrapperSpanWeek className={`medElemUnic${med.id}`}>
+                        {`${med.title}`}
+                      </WrapperSpanWeek>
+                      <br />
+                    </>
+                  )
+          );
+          break;
+        case 'after': //! ПОСЛЕ ужина
+          return (
+            // weekday
+            dayItem.day() !== 6 && dayItem.day() !== 0
+              ? halfHourItem.isSame(
+                  lastMealWeekdays
+                    .add(med.interval.minute, 'minute')
+                    .add(med.interval.hour, 'hour'),
+                  'hour',
+                ) &&
+                  lastMealWeekdays.clone().minute() - halfHourItem.minute() >=
+                    0 && // 22:30 - 22:21 >= 0  and < 30
+                  lastMealWeekdays.clone().minute() - halfHourItem.minute() <
+                    30 && (
+                    <>
+                      {currentDayForWirning && (
+                        <HelperWarningMarker
+                          halfHourItem={halfHourItem}
+                          currentDate={currentDate}
+                        />
+                      )}
+                      <RiMedicineBottleLine
+                        style={{
+                          color: 'red',
+                        }}
                       />
-                    )}
-                    <RiMedicineBottleLine
-                      style={{
-                        color: 'red',
-                      }}
-                    />
-                    <WrapperSpanWeek className={`medElemUnic${med.id}`}>
-                      {`${med.title}`}
-                    </WrapperSpanWeek>
-                    <br />
-                  </>
-                )
-            : // weekend
-              halfHourItem.isSame(
-                lastMealWeekend
-                  .add(med.interval.minute, 'minute')
-                  .add(med.interval.hour, 'hour'),
-                'hour',
-              ) &&
-                lastMealWeekend.clone().minute() - halfHourItem.minute() >= 0 && // 22:30 - 22:21 >= 0  and < 30
-                lastMealWeekend.clone().minute() - halfHourItem.minute() <
-                  30 && (
-                  <>
-                    {currentDayForWirning && (
-                      <HelperWarningMarker
-                        halfHourItem={halfHourItem}
-                        currentDate={currentDate}
+                      <WrapperSpanWeek className={`medElemUnic${med.id}`}>
+                        {`${med.title}`}
+                      </WrapperSpanWeek>
+                      <br />
+                    </>
+                  )
+              : // weekend
+                halfHourItem.isSame(
+                  lastMealWeekend
+                    .add(med.interval.minute, 'minute')
+                    .add(med.interval.hour, 'hour'),
+                  'hour',
+                ) &&
+                  lastMealWeekend.clone().minute() - halfHourItem.minute() >=
+                    0 && // 22:30 - 22:21 >= 0  and < 30
+                  lastMealWeekend.clone().minute() - halfHourItem.minute() <
+                    30 && (
+                    <>
+                      {currentDayForWirning && (
+                        <HelperWarningMarker
+                          halfHourItem={halfHourItem}
+                          currentDate={currentDate}
+                        />
+                      )}
+                      <RiMedicineBottleLine
+                        style={{
+                          color: 'red',
+                        }}
                       />
-                    )}
-                    <RiMedicineBottleLine
-                      style={{
-                        color: 'red',
-                      }}
-                    />
-                    <WrapperSpanWeek className={`medElemUnic${med.id}`}>
-                      {`${med.title}`}
-                    </WrapperSpanWeek>
-                    <br />
-                  </>
-                )
-        );
-        break;
+                      <WrapperSpanWeek className={`medElemUnic${med.id}`}>
+                        {`${med.title}`}
+                      </WrapperSpanWeek>
+                      <br />
+                    </>
+                  )
+          );
+          break;
 
-      default:
-        break;
+        default:
+          break;
+      }
     }
   },
 );

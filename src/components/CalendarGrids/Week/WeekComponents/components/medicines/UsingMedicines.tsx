@@ -98,7 +98,7 @@ const UsingMedicines: FC<IProps> = memo(
       // подробнее: https://learn.javascript.ru/coordinates#getCoords
       // console.log(box)
       // popup
-      const line = document.querySelector('#IdPopup');
+      const line = document.querySelector<HTMLElement>('#IdPopup');
       // span
       if (event.type == 'mouseover') {
         // если мышь наведена на элемент
@@ -112,11 +112,11 @@ const UsingMedicines: FC<IProps> = memo(
             box.left + window.scrollX + (dayItem.day() !== 0 ? 100 : -350)
           }px; 
           animation: show 1s forwards;`; // сама анимация "show" описана myPopup -> sc_MyPopup.tsx/ в воскрсенье Popup left: 100px
-        } else if (event.type == 'mouseout') {
-          // если мышь ушла с элемента (mouseout)
-          line.style.cssText += `
-              animation: hidden 3s forwards;`; // сама анимация "hidden" описана myPopup -> sc_MyPopup.tsx
-        }
+        } 
+      } else if (event.type == 'mouseout' && line !== null) {
+        // если мышь ушла с элемента (mouseout)
+        line.style.cssText += `
+            animation: hidden 3s forwards;`; // сама анимация "hidden" описана myPopup -> sc_MyPopup.tsx
       }
     };
 
