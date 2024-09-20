@@ -20,12 +20,12 @@ const CounterMonth: FC<IProps> = memo(
       // подробнее: https://learn.javascript.ru/coordinates#getCoords
       // console.log(box)
       // popup
-      const line = document.querySelector(`#MyPopupList${index}`); //! окна не видимы. они в каждой ячейке, и уникальыне классы (можно med.id вместо index)
+      const line = document.querySelector<HTMLElement>(`#MyPopupList${index}`); //! окна не видимы. они в каждой ячейке, и уникальыне классы (можно med.id вместо index)
       // span
       if (event.type == 'mouseover') {
         // монтируем MyPopupList
         // закроем MyPopup.tsx чтобы не перекрывал MyPopupList.tsx
-        document.querySelector('#IdPopup')!.style.cssText = `display: none;`; // MyPopup.tsx
+        document.querySelector<HTMLElement>('#IdPopup')!.style.cssText = `display: none;`; // MyPopup.tsx
         // target.top + высота popup > высота окна ? target.top - (окно - target.top - высота Popup) : просто target.top - высота Popup / 2
         //* Math.abs() чтобы отрицательное число сделать положительным: https://sky.pro/wiki/javascript/prevraschenie-otritsatelnykh-chisel-v-polozhitelnye-v-java-script/
         line!.style.cssText += `

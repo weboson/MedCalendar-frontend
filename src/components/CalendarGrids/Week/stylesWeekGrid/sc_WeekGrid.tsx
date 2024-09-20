@@ -65,8 +65,6 @@ export const WrapperTopPanelAndContent = styled.div`
 `;
 // Day of Week + Date + Column
 export const WrapperColumn = styled.div`
-/* ${(props) => (props.$currentDay ? 'width: 100%;' : 'width: 40px;')} */
-  
 `; // для обёртки
 
 interface IDayOfWeek {

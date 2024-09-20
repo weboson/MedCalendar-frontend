@@ -7,26 +7,21 @@ import {
   WrapperRecipe,
   WrapperRecipeWindow,
 } from '../../stylesDayGrid/sc_DayGrid';
-import { Moment } from 'moment';
 import moment from 'moment';
 import { RecipeService } from '../../../../../services/recipe.service';
 import { IRecipeRepository } from '../../../../../types/types';
 
-interface IProps {
-  currentDate: Moment;
-}
-
-const RecipeWindow: FC<IProps> = ({ currentDate }) => {
+const RecipeWindow: FC = () => {
   //Redux-toolkit - из hooks.tsx -
   // получили id лекарства
   const idMed = useAppSelector((state) => state.chosenMedicine); // изменение состояния (useAppDispatch) в DayUsingrecipes.tsx
   // получить рецепт по id, на который клинули
-  const [recipe, setRecipe] = useState<IRecipeRepository | Object>({});
+  const [recipe, setRecipe] = useState<IRecipeRepository>();
   //! GetAll 
   const getOneRecipe = async (id: string) => {
     const response = await RecipeService.getOne(id);
     // console.log(response);
-    setRecipe(response);
+      setRecipe(response);
     // toast.success('Рецепт один: загружен');
   };
 
@@ -34,7 +29,7 @@ const RecipeWindow: FC<IProps> = ({ currentDate }) => {
     getOneRecipe(`${idMed}`);
   }, [idMed]);
 
-  if (recipe.id) {
+  if (recipe) {
     return (
       <WrapperRecipeWindow>
         {/* сторая обертка, чтобы позиционировать элментами не выхоодя за белый фон */}

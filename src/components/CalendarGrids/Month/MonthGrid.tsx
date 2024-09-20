@@ -60,7 +60,7 @@ const MonthGrid: FC<IProps> = ({ firstDayOfWeek, currentDate }) => {
   useEffect(() => {
     data.map((itemMed, index) => {
       // const color = getRandomColor();
-      for (const elem of document.querySelectorAll(
+      for (const elem of document.querySelectorAll<HTMLElement>(
         `.medElemUnic${itemMed.id}`, // пример классов: medElemUnic6, medElemUnic7, medElemUnic12 etc - (таким же методом назанченные в InDependently.tsx и тд.)
       )) {
         elem.style.cssText += `color: ${arrayColors[index] || 'white'};`;
