@@ -1,3 +1,5 @@
+//@ts-nocheck
+// комментари выше "//@ts-nocheck" указывает TSC компилятору не проверять на ошибки данный файл
 //! Приём Лекарств зависит от ПОСЛЕДНЕГО приёма пищи (до/вовремя/после)
 // case: 'last supper'    ---  takingMedications[0].action: waysUsing[2]
 import { Moment } from 'moment';

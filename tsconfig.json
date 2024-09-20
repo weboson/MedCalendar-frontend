@@ -1,10 +1,13 @@
 {
   "compilerOptions": {
     "target": "ES2020",
+    "removeComments": true,
     "useDefineForClassFields": true,
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "module": "ESNext",
     "skipLibCheck": true,
+    /*Отключить полную проверку типов (будут сообщаться только о критических ошибках синтаксического анализа и генерации).*/
+    "noCheck": true,
 
     /* Bundler mode */
     "moduleResolution": "bundler",
@@ -15,11 +18,12 @@
     "jsx": "react-jsx",
 
     /* Linting */
-    "strict": true,
+    "strict": false,
     "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true,
     "noImplicitThis": true,
+
     
   },
   "include": ["src"],

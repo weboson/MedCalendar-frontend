@@ -1,5 +1,6 @@
 
 /* //! Диапазон (DoubleScrollBar.tsx) */
+@ts-nocheck
 
  .range-slider {
     height: 5px;
