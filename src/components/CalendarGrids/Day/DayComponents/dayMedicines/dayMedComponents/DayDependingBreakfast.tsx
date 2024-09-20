@@ -2,7 +2,6 @@
 // case: 'first breakfast'    ---  takingMedications[0].action: waysUsing[1]
 import { Moment } from 'moment';
 import { FC, memo } from 'react';
-import { RiMedicineBottleLine } from 'react-icons/ri';
 import { IRecipesMedication } from '../../../../../../data/localDataBase/LocalDB_WaysUsing';
 import { WrapperSpanDay } from '../../../stylesDayGrid/sc_DayGrid';
 import HelperWarningMarker from '../../../../../helper/HelperWarningMarker';

@@ -36,10 +36,10 @@ const YearGrid: FC<IProps> = ({ currentDate }) => {
 
       // });
       // нахожу самое ранее начало курса (приёма лекарств) 
-      const minStart = moment.min(recipes.map((item, indx) => moment(item.start)))
+      const minStart = moment.min(recipes.map((item) => moment(item.start)))
       setMinStart(minStart)
       // нахожу самое длителное время из курса
-      const maxCourse = moment.max(recipes.map((item, indx) => (moment().add(item.duration.index, item.duration.title)) ))
+      const maxCourse = moment.max(recipes.map((item) => (moment().add(item.duration.index, item.duration.title)) ))
       setMaxDuration(maxCourse);
       // console.log(minStart)
       // console.log(maxCourse)
@@ -47,11 +47,11 @@ const YearGrid: FC<IProps> = ({ currentDate }) => {
   };
 
   // ! GetAll рецепты
-  const [data, setData] = useState<IRecipeRepository[]>([]); // все рецепты из БД
+  // const [data, setData] = useState<IRecipeRepository[]>([]); // все рецепты из БД
   //! метод: получить весь список рецептов
   const getAllRecipes = async () => {
     const response = await RecipeService.getAll();
-    setData(response)
+    // setData(response)
     calcMaxDuration(response);
     toast.success('Рецепты: загружены');
   };

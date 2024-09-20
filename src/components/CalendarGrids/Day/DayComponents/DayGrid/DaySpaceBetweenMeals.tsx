@@ -17,7 +17,7 @@ interface IMeal {
 interface IProps {
   halfHourItem: Moment;
   currentDate: Moment;
-  meal: IMeal | Object; // только для этого компонента, расчеты вынесены в родитель, протсо потом понял, что у каждого свои рачсеты и они меняются
+  meal: IMeal; // только для этого компонента, расчеты вынесены в родитель, протсо потом понял, что у каждого свои рачсеты и они меняются
 }
 
 const DaySpaceBetweenMeals: FC<IProps> = ({

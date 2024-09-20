@@ -3,7 +3,6 @@
 import { Moment } from 'moment';
 import { FC, memo } from 'react';
 import { IRecipesMedication } from '../../../../../../data/localDataBase/LocalDB_WaysUsing';
-import { RiMedicineBottleLine } from 'react-icons/ri';
 import { WrapperSpanDay } from '../../../stylesDayGrid/sc_DayGrid';
 import HelperWarningMarker from '../../../../../helper/HelperWarningMarker';
 // import HelperWarningMarker from './helper/HelperWarningMarker';

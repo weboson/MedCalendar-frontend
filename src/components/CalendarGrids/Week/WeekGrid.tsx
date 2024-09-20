@@ -41,7 +41,7 @@ const WeekGrid: FC<IProps> = ({ currentDate }) => {
   const calcMaxMealFood = (recipes: Array<IRecipeRepository>) => {
     // находим все рецепты, которые ЗАВИСИМЫ от еды
     if (recipes.length > 0) {
-      const dependent = recipes.map((item, index) => {
+      const dependent = recipes.map((item) => {
         if (!item.independently) {
           // если рецепт зависит от еду (ставим icon food)
           return item;
@@ -51,7 +51,7 @@ const WeekGrid: FC<IProps> = ({ currentDate }) => {
       // console.log(dependent)
 
       // находим максимально частый приём лекраства (который зависит от еды)
-      const arr = dependent.map((item, index) => {
+      const arr = dependent.map((item) => {
         if (item !== 0) {
           return +item.quantity;
         }
@@ -143,7 +143,7 @@ const WeekGrid: FC<IProps> = ({ currentDate }) => {
   useEffect(() => {
     data.map((itemMed, index) => {
       // const color = getRandomColor();
-      for (const elem of document.querySelectorAll(
+      for (const elem of document.querySelectorAll<HTMLElement>(
         `.medElemUnic${itemMed.id}`, // пример классов: medElemUnic6, medElemUnic7, medElemUnic12 etc - (таким же методом назанченные в InDependently.tsx и тд.)
       )) {
         elem.style.cssText += `background-color: ${
@@ -159,7 +159,7 @@ const WeekGrid: FC<IProps> = ({ currentDate }) => {
 
   //! Получение данных для MealSchedule (график питания: moon/son & icon food)
   // переключатель (реагирующий <, today, >) для подгрузки новых данных для Week и DayGrid
-  const toggle = useAppSelector((state) => state.toggle);
+  // const toggle = useAppSelector((state) => state.toggle);
   // получим созданную в форме id графика (в MealscheduleForm.tsx и изменненую в ReduxTK)
   const idMeal = '' + localStorage.getItem('idMealschedules');
   // console.log(idMeal);

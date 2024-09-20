@@ -29,7 +29,7 @@ const MedicinesMonth: FC<IProps> = memo(({med, dayItem}) => {
       // подробнее: https://learn.javascript.ru/coordinates#getCoords
       // console.log(box)
       // popup
-      const line = document.querySelector('#IdPopup');
+      const line = document.querySelector<HTMLElement>('#IdPopup');
       // span
       if (event.type == 'mouseover') {
         // если мышь наведена на элемент

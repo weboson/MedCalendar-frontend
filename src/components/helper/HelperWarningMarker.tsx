@@ -10,10 +10,9 @@ import { arrPushWarning } from '../../store/features/arrWarningSlice';
 interface IProps {
   halfHourItem: Moment; // так как мы уже имеем заполненную лекарствами ячейку, 
   // благодаря родительский компонентам, например: DependingBreakfast
-  currentDate: Moment; // рендер (проверка) каждые 60000 ms
 }
 
-const HelperWarningMarker:FC<IProps> = ({halfHourItem, currentDate }) => {
+const HelperWarningMarker:FC<IProps> = ({halfHourItem }) => {
   
   const dispatch = useAppDispatch();
   

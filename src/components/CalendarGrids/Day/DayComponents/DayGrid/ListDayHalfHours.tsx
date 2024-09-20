@@ -13,6 +13,7 @@ import DayMealSchedule from './DayMealSchedule';
 import DayUsingMedicines from '../dayMedicines/DayUsingMedicines';
 import { useAppSelector } from '../../../../../store/hooks';
 import {
+  IMealSchedule,
   IMealscheduleRepository,
   IRecipeRepository,
 } from '../../../../../types/types';
@@ -27,7 +28,7 @@ interface IMeal {
 interface IProps {
   currentDate: Moment;
   meal: Promise<IMeal> | Object;
-  dataMealSchedule: IMealscheduleRepository | Object;
+  dataMealSchedule: IMealscheduleRepository | IMealSchedule;
   recipes: Array<IRecipeRepository>; // рецепты их базы данных (DayGrid.tsx)
   maxMealFood: number
 }
@@ -105,7 +106,7 @@ const ListDayHalfHours: FC<IProps> = ({
         currentDate={currentDate}
       />
       {/* icon food */}
-      {dataMealSchedule.id ? ( // если user создал график питания
+      {dataMealSchedule.weekday ? ( // если user создал график питания
         <DayMealSchedule
           halfHourItem={halfHourItem}
           currentDate={currentDate}
@@ -115,7 +116,7 @@ const ListDayHalfHours: FC<IProps> = ({
       ) : null}
 
       {/* for Using Medicines (расчет приёма лекарств) */}
-      {recipes.length > 0 && dataMealSchedule.id ? (
+      {recipes.length > 0 && dataMealSchedule.weekday ? (
         <WrapperFlexMedicines>
           {recipes.map(
             (medItem, indx) =>

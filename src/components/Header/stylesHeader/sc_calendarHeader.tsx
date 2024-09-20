@@ -54,7 +54,7 @@ export const ButtonsWrapperMenu = styled('div')`
   }
   a {
     text-decoration-line: none;
-    color: ${(props) => (props.$isActiveModeDate ? '#565759' : '#E6E6E6;')};
+    /* color: ${(props) => (props.$isActiveModeDate ? '#565759' : '#E6E6E6;')}; */
   }
 `;
 

@@ -10,7 +10,6 @@ import {
 import { Moment } from 'moment';
 import moment from 'moment';
 import ListDayHalfHours from './ListDayHalfHours';
-import recipesMedications from '../../../../../data/localDataBase/LocalDB_WaysUsing';
 import { arrayColors } from '../../../../../data/colors';
 import { useAppDispatch, useAppSelector } from '../../../../../store/hooks';
 import { readingMarkerWarning } from '../../../../../store/features/markerWarningSlice';
@@ -18,6 +17,7 @@ import { arrWarningCleare } from '../../../../../store/features/arrWarningSlice'
 import { MealScheduleService } from '../../../../../services/mealschedule.service';
 import { toast } from 'react-toastify';
 import {
+  IMealSchedule,
   IMealscheduleRepository,
   IRecipeRepository,
 } from '../../../../../types/types';
@@ -47,7 +47,7 @@ const DayGrid: FC<IProps> = ({ currentDate }) => {
   const calcMaxMealFood = (recipes: Array<IRecipeRepository>) => {
     // находим все рецепты, которые ЗАВИСИМЫ от еды
     if (recipes.length > 0) {
-      const dependent = recipes.map((item, index) => {
+      const dependent = recipes.map((item) => {
         if (!item.independently) {
           // если рецепт зависит от еду (ставим icon food)
           return item;
@@ -57,7 +57,7 @@ const DayGrid: FC<IProps> = ({ currentDate }) => {
       // console.log(dependent)
 
       // находим максимально частый приём лекраства (который зависит от еды)
-      const arr = dependent.map((item, index) => {
+      const arr = dependent.map((item) => {
         if (item !== 0) {
           return +item.quantity;
         }
@@ -116,7 +116,7 @@ const DayGrid: FC<IProps> = ({ currentDate }) => {
   useEffect(() => {
     data.map((itemMed, index) => {
       // const color = getRandomColor();
-      for (const elem of document.querySelectorAll(
+      for (const elem of document.querySelectorAll<HTMLElement>(
         `.medElemUnic${itemMed.id}`, // пример классов: medElemUnic6, medElemUnic7, medElemUnic12 etc - (таким же методом назанченные в InDependently.tsx и тд.)
       )) {
         elem.style.cssText += `background-color: ${
@@ -132,8 +132,8 @@ const DayGrid: FC<IProps> = ({ currentDate }) => {
 
   // состояние данных
   const [dataMealSchedule, setDataMealSchedule] = useState<
-    IMealscheduleRepository | Object
-  >({});
+    IMealscheduleRepository | IMealSchedule
+  >({weekday: '', weekend: ''});
   const [spaceBetweenMeals, setSpaceBetweenMeals] = useState<IMeal | Object>(
     {},
   );

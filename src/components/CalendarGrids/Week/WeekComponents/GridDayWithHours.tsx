@@ -11,6 +11,7 @@ import UsingMedicines from './components/medicines/UsingMedicines';
 // Redux-Toolkit для получения данных состояния (идникатор для WarnigMarker)
 import { useAppSelector } from '../../../../store/hooks';
 import {
+  IMealSchedule,
   IMealscheduleRepository,
   IRecipeRepository,
 } from '../../../../types/types';
@@ -18,7 +19,7 @@ import {
 interface IProps {
   currentDate: Moment;
   dayItem: Moment;
-  dataMealSchedule: IMealscheduleRepository | Object;
+  dataMealSchedule: IMealscheduleRepository | IMealSchedule;
   recipes: Array<IRecipeRepository>; // рецепты их базы данных (WeekGrid.tsx)
   maxMealFood: number
 }
@@ -76,7 +77,7 @@ const GridDayWithHours: FC<IProps> = memo(
         } // scroll in Home.tsx
       >
         {/* //* icons Sun & Moon (space between firs и last eating)*/}
-        {dataMealSchedule.id ? ( // если user создал график питания
+        {dataMealSchedule.weekday ? ( // если user создал график питания
           <SpaceBetweenMeals
             dayItem={dayItem}
             halfHourItem={halfHourItem}
@@ -86,7 +87,7 @@ const GridDayWithHours: FC<IProps> = memo(
         ) : null}
 
         {/* //* icons Food (firs и last eating)*/}
-        {dataMealSchedule.id ? ( // если user создал график питания
+        {dataMealSchedule.weekday ? ( // если user создал график питания
           <MealSchedule
             dayItem={dayItem}
             halfHourItem={halfHourItem}

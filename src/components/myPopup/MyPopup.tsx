@@ -2,7 +2,7 @@
 import { FC, useEffect, useState } from 'react';
 import { MyButton, WrapperMyModal } from './stylesMyPopup/sc_MyPopup';
 import { useAppSelector } from '../../store/hooks';
-import { IRecipeRepository } from '../../types/types';
+import { IRecipe, IRecipeRepository } from '../../types/types';
 import { RecipeService } from '../../services/recipe.service';
 // DataBase array
 // import takingMedications from '../../data/localDataBase/LocalDB_WaysUsing';
@@ -18,7 +18,9 @@ const MyPopup: FC = () => {
   const getOneRecipe = async (id: string) => {
     const response = await RecipeService.getOne(id);
     // console.log(response);
-    setRecipe(response)
+    if (response) {
+      setRecipe(response);
+    }
     // toast.success('Рецепт один: загружен');
   };
 

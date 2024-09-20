@@ -2,12 +2,13 @@
 // Либо ВОЙТИ либо ЗАРЕГИСТРИРОВАТСЯ
 // Exmple: http://localhost:3000/api/auth/profile or http://localhost:3000/api/auth/login
 import { Moment } from 'moment';
-import { FC, useEffect, useState } from 'react';
+import { FC } from 'react';
 import { useOutletContext } from 'react-router-dom';
 import Monitor from '../components/Monitor/Monitor';
 import Auth from '../components/Auth/Auth';
 //type для констант context-а от 'react-router-dom'
-interface ArrayContextType extends Array<Moment> {}
+interface ArrayContextType extends Array<Moment> {
+}
 
 const AuthPage: FC = () => {
 

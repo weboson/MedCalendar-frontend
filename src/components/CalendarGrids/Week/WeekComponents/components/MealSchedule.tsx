@@ -4,14 +4,14 @@ import { FC, memo, useMemo } from 'react';
 import { MdOutlineFastfood } from 'react-icons/md';
 import { Moment } from 'moment';
 import { FoodTooltip, StyleIconFood } from '../../stylesWeekGrid/sc_WeekGrid';
-import { IMealscheduleRepository } from '../../../../../types/types';
+import { IMealSchedule, IMealscheduleRepository } from '../../../../../types/types';
 
 interface IProps {
   dayItem: Moment;
   halfHourItem: Moment;
   maxmealfood: number
   currentDate: Moment;
-  dataMealSchedule: IMealscheduleRepository
+  dataMealSchedule: IMealscheduleRepository | IMealSchedule
 }
 
 const MealSchedule: FC<IProps> = memo(({

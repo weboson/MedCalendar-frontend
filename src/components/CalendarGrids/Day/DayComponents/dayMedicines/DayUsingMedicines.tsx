@@ -9,14 +9,14 @@ import DayInDependently from './dayMedComponents/DayInDependently';
 import { useAppDispatch } from '../../../../../store/hooks';
 import { chosenMedicineID } from '../../../../../store/features/chosenMedicineDaySlice';
 // import { mealSchedule } from '../../../../../data/localDataBase/localDB_MealSchedule';
-import { IMealscheduleRepository, IRecipeRepository } from '../../../../../types/types';
+import { IMealSchedule, IMealscheduleRepository, IRecipeRepository } from '../../../../../types/types';
 
 interface IProps {
   halfHourItem: Moment;
   med: IRecipeRepository;
   currentDate: Moment;
   currentDayForWirning: boolean
-  dataMealSchedule: IMealscheduleRepository | Object
+  dataMealSchedule: IMealscheduleRepository | IMealSchedule
 }
 
 const DayUsingMedicines: FC<IProps> = memo(
@@ -26,7 +26,7 @@ const DayUsingMedicines: FC<IProps> = memo(
       () =>
         currentDate
           .set({
-            hour: dataMealSchedule.weekday[0],
+            hour: +dataMealSchedule.weekday[0],
           })
           .clone(), // обз clone() иначе изменим исходник
       [currentDate],
@@ -36,7 +36,7 @@ const DayUsingMedicines: FC<IProps> = memo(
       () =>
         currentDate
           .set({
-            hour: dataMealSchedule.weekday[1],
+            hour: +dataMealSchedule.weekday[1],
           })
           .clone(),
       [currentDate],
@@ -57,7 +57,7 @@ const DayUsingMedicines: FC<IProps> = memo(
       () =>
         currentDate
           .set({
-            hour: dataMealSchedule.weekend[0],
+            hour: +dataMealSchedule.weekend[0],
           })
           .clone(),
       [currentDate],
@@ -67,7 +67,7 @@ const DayUsingMedicines: FC<IProps> = memo(
       () =>
         currentDate
           .set({
-            hour: dataMealSchedule.weekend[1],
+            hour: +dataMealSchedule.weekend[1],
           })
           .clone(),
       [currentDate],

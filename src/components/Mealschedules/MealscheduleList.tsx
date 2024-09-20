@@ -170,10 +170,10 @@ const MealscheduleList: FC = () => {
             </Section>
           </SectionsWrapper>
           <ButtonsWrapper>
-            <Button variant="contained" type="submit" onClick={() => removeMealSchedule(id)}>
+            <Button variant="contained" type="submit" onClick={() => removeMealSchedule()}>
               Удалить
             </Button>
-            <Button variant="contained" type="submit" onClick={() => removeAndCreate(id)}>
+            <Button variant="contained" type="submit" onClick={() => removeAndCreate()}>
               Изменить
             </Button>
           </ButtonsWrapper>

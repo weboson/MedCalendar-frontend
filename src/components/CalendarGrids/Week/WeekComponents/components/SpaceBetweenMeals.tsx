@@ -6,13 +6,13 @@ import { GoSun } from 'react-icons/go'; // sun
 import { BsMoon } from 'react-icons/bs'; // Moon
 // база данных
 import { stylesMoon, stylesSun } from '../../stylesWeekGrid/sc_WeekGrid';
-import { IMealscheduleRepository } from '../../../../../types/types';
+import { IMealSchedule, IMealscheduleRepository } from '../../../../../types/types';
 
 interface IProps {
   dayItem: Moment;
   halfHourItem: Moment;
   currentDate: Moment;
-  dataMealSchedule: IMealscheduleRepository | Object
+  dataMealSchedule: IMealscheduleRepository | IMealSchedule
 }
 
 const SpaceBetweenMeals: FC<IProps> = ({
@@ -30,7 +30,7 @@ const SpaceBetweenMeals: FC<IProps> = ({
     () =>
       currentDate
         .set({
-          hour: dataMealSchedule.weekday[0],
+          hour: +dataMealSchedule.weekday[0],
         })
         .clone(),
     [currentDate],
@@ -40,7 +40,7 @@ const SpaceBetweenMeals: FC<IProps> = ({
     () =>
       currentDate
         .set({
-          hour: dataMealSchedule.weekday[1],
+          hour: +dataMealSchedule.weekday[1],
         })
         .clone(),
     [currentDate],
@@ -50,7 +50,7 @@ const SpaceBetweenMeals: FC<IProps> = ({
     () =>
       currentDate
         .set({
-          hour: dataMealSchedule.weekend[0],
+          hour: +dataMealSchedule.weekend[0],
         })
         .clone(),
     [currentDate],
@@ -60,7 +60,7 @@ const SpaceBetweenMeals: FC<IProps> = ({
     () =>
       currentDate
         .set({
-          hour: dataMealSchedule.weekend[1],
+          hour: +dataMealSchedule.weekend[1],
         })
         .clone(),
     [currentDate],
