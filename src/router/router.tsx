@@ -9,7 +9,7 @@ import ProtectedRoute from '../components/ProtectedRoute/ProtectedRoute'; // у�
 
 export const router = createBrowserRouter([
   {
-    path: '/',
+    path: `${import.meta.env.BASE_URL}`, //! `${import.meta.env.BASE_URL} - это значение из "vite.config.ts" == /MedCalendar-frontend
     element: <Layout />, // используется главный шаблон (Lauout.tsx), где header, monitor, <Outlet> и к примеру, footer
     errorElement: <ErrorPage />,
     children: [
@@ -18,7 +18,7 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: '/recipes',
+        path: `${import.meta.env.BASE_URL}/recipes`,
         element: (
           <ProtectedRoute>
             <Recipes />
@@ -26,7 +26,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: '/mealschedules',
+        path: `${import.meta.env.BASE_URL}/mealschedules`,
         element: (
           <ProtectedRoute>
             <Mealschedules />
@@ -34,7 +34,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: '/auth',
+        path: `${import.meta.env.BASE_URL}/auth`,
         element: <AuthPage />,
       },
     ],
