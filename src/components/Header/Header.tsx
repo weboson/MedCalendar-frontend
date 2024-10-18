@@ -43,7 +43,7 @@ const Headers: FC = () => {
     <DivWrapper>
       {/* //! Левый сектор */}
       {/*//* Logo */}
-      <Link to={'/'}>
+      <Link to={import.meta.env.BASE_URL}>
         <TitleCalendarWrapper>
           <TitleCalendar>MedСalendar</TitleCalendar>
           <StyleIconPlus>

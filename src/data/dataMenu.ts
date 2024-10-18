@@ -17,8 +17,8 @@ export const menuModesDate: IMenuModesDate = [
     {id: 2, title: 'Week', format: 'WWW', UrlParams: `${import.meta.env.BASE_URL}`}, 
     {id: 3, title: 'Month', format: 'D', UrlParams: `${import.meta.env.BASE_URL}`}, 
     {id: 4, title: 'Year', format: 'YYYY', UrlParams: `${import.meta.env.BASE_URL}`},
-    {id: 5, title: 'Recipes', format: '', UrlParams: `${import.meta.env.BASE_URL}/recipes`}, // страница рецептов
-    {id: 6, title: 'Mealschedules', format: '', UrlParams: `${import.meta.env.BASE_URL}/mealschedules`}, // страница графика приёма пищи
+    {id: 5, title: 'Recipes', format: '', UrlParams: `${import.meta.env.BASE_URL}recipes`}, // страница рецептов
+    {id: 6, title: 'Mealschedules', format: '', UrlParams: `${import.meta.env.BASE_URL}mealschedules`}, // страница графика приёма пищи
     // страница авторизации и регистрации, в зависимости от авторизирован ли user или нет - надпись разная (Login или Logout)
-    {id: 7, title: 'Logout', subTitle: 'Login',format: '', UrlParams: `${import.meta.env.BASE_URL}/auth`}, // страница авторизации и регистрации
+    {id: 7, title: 'Logout', subTitle: 'Login',format: '', UrlParams: `${import.meta.env.BASE_URL}auth`}, // страница авторизации и регистрации
   ]

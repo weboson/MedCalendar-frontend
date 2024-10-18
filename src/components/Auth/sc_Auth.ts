@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const FormWrappeer = styled.div`
-height: 81.9vh;
+height: 77.8vh;
 background-color: #e6e6e6;
 padding: 3%;
 
