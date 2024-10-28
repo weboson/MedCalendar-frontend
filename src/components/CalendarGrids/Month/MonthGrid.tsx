@@ -49,10 +49,10 @@ const MonthGrid: FC<IProps> = ({ firstDayOfWeek, currentDate }) => {
   // и прибавлям каждую итерацию +1 день и выводим его, но не меняем исходник, ведь мы клонируем clone()
   const daysArray = [...new Array(42)].map(() => day.add(1, 'day').clone());
 
-  // проверка на текущий день, чтобы его маркировать
-  const isCurrentDay = (day: object) => currentDate.isSame(day, 'day');
+  // проверка на текущий день в теущем месяце, чтобы его маркировать - зависимсоть от currentDate (< today >)
+  const isCurrentDay = (day: object) => currentDate.isSame(day, 'day') && currentDate.isSame(moment(), 'month');
   // подцветка дней входящие в выбранный месяц
-  const $isSelecctedMonth = (day: object) => currentDate.isSame(day, 'month');
+  const isSelecctedMonth = (day: object) => currentDate.isSame(day, 'month');
 
   //! цветные иконки лекарств (также как и WeekGrid.tsx)):
   // массив цветов (arrayColors) генерируется в Colors.ts - в отдельном файле, т.к. генерируется 1 раз (для решения бага: если ЛС исчезнет, и если он снова появится, то уже без цвета )
@@ -94,7 +94,7 @@ const MonthGrid: FC<IProps> = ({ firstDayOfWeek, currentDate }) => {
           <CellWrapper
             key={dayItem.unix()}
             $isWeekend={dayItem.day() === 6 || dayItem.day() === 0}
-            $isSelecctedMonth={$isSelecctedMonth(dayItem)}
+            $isSelecctedMonth={isSelecctedMonth(dayItem)}
           >
             {/* вывод числа месяца */}
             <RowInCell $justifyContent={'flex-end'}>

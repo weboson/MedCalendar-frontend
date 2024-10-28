@@ -8,13 +8,13 @@ export default defineConfig({
   plugins: [react()],
   // base: `${SERVER_URL}/dist/`, 
   base: SERVER_URL || '/', 
-  // server: {
-  //   port: 8080, // можно указать свой кастомный порт для deploy
-  //   proxy: {
-  //     '/': {
-  //       target: 'https://weboson.github.io/MedCalendar-frontend:8080'
-  //     },
-  //   }
-  // },
+  server: {
+    port: 5000, // можно указать свой кастомный порт 
+    // proxy: {
+    //   '/': {
+    //     target: 'https://weboson.github.io/MedCalendar-frontend:8080'
+    //   },
+    // }
+  },
   
 })
