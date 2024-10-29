@@ -21,7 +21,6 @@ interface IProps {
 }
 
 const YearGrid: FC<IProps> = ({ currentDate }) => {
-
   // const max =  moment.max(moment(), moment().add(5, 'years')).format('YYYY-MM-DD')
   // console.log(max)
 
@@ -35,14 +34,18 @@ const YearGrid: FC<IProps> = ({ currentDate }) => {
       // const result = recipes.map((item, index) => {
 
       // });
-      // нахожу самое ранее начало курса (приёма лекарств) 
-      const minStart = moment.min(recipes.map((item) => moment(item.start)))
-      setMinStart(minStart)
-      // нахожу самое длителное время из курса
-      const maxCourse = moment.max(recipes.map((item) => (moment().add(item.duration.index, item.duration.title)) ))
+      //- нахожу самое ранее начало курса (приёма лекарств)
+      const minStart = moment.min(recipes.map((item) => moment(item.start)));
+      setMinStart(minStart);
+      //- нахожу самое длителное время из курса используя: https://momentjs.com/docs/#/get-set/max/
+      let allCourseOfRecipes = recipes.map(function (recipe) {
+        return moment().add(recipe.duration.index, recipe.duration.title); // массив разных moment(), например: [moment(3, 'month'), moment(1, 'year')]
+      });
+      const maxCourse = moment.max(allCourseOfRecipes); // выявляет максимальное moment()
       setMaxDuration(maxCourse);
       // console.log(minStart)
-      // console.log(maxCourse)
+      console.log(maxCourse)
+      // console.log(allCourseOfRecipes[0]);
     }
   };
 
@@ -106,19 +109,22 @@ const YearGrid: FC<IProps> = ({ currentDate }) => {
                   .startOf('week')
                   .add(i, 'day'); // переменная каждого дня
 
-                // расчет интервала (курс приёма лекарств)
-                ((iDay >= minStart) && iDay <= maxDuration) ? marker(true) : marker(false)
-
+                // расчет интервала (макс курса приёма лекарств) - серые ячейки
+                iDay >= minStart && iDay <= maxDuration
+                  ? marker(true)
+                  : marker(false);
                 return (
                   <CellDay
                     key={i}
                     $isCurrentDay={
                       iDay.isSame(currentDate, 'day') &&
-                      monthItem.isSame(currentDate, 'month')
+                      monthItem.isSame(currentDate, 'month') &&
+                      currentDate.isSame(moment(), 'year')
                     }
                     $isCurrentDaysOfMonth={
                       iDay.isSame(currentDate, 'month') &&
-                      monthItem.isSame(currentDate, 'month')
+                      monthItem.isSame(currentDate, 'month') &&
+                      currentDate.isSame(moment(), 'year')
                     }
                     $isMedicines={indicator}
                   >
