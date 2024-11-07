@@ -178,17 +178,17 @@ const DayGrid: FC<IProps> = ({ currentDate }) => {
   };
 
   //! получим созданную в форме id графика (в MealscheduleForm.tsx и изменненую в ReduxTK)
-  const idMeal = '' + localStorage.getItem('idMealschedules');
+  // const idMeal = '' + localStorage.getItem('idMealschedules');
   // console.log(idMeal);
   //! получаем данные с сервера
-  const getMealSchedule = async (id: string) => {
+  const getMealSchedule = async () => {
     try {
-      const response = await MealScheduleService.getOne(id);
-      if (response) {
+      const response = await MealScheduleService.getAll();
+      if (response.length) {
         // console.log(response)
         //* устанавливаем полученные с БД данные в: первые и последние питания на weekday/weekend
-        getSpaceBetweenMeals(response); // для расчетов
-        setDataMealSchedule(response); // исходные данные
+        getSpaceBetweenMeals(response[0]); // для расчетов
+        setDataMealSchedule(response[0]); // исходные данные
         toast.success('График питания: загружено');
         return response;
       }
@@ -200,7 +200,7 @@ const DayGrid: FC<IProps> = ({ currentDate }) => {
   };
   // toggle- перключатель (реагирующий <, today, >) для подгрузки новых данных для DayGrid, Week
   useEffect(() => {
-    getMealSchedule(idMeal);
+    getMealSchedule();
   }, [toggle]);
 
   return (

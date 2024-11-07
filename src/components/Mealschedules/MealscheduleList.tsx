@@ -26,37 +26,40 @@ const MealscheduleList: FC = () => {
   const dispatch = useAppDispatch();
   const handleClick = (index: number) => {
     //* записал активную кнопку меню в хранилище, используется в modesDateSlice.ts
-    sessionStorage.setItem('indexSubMenu', index.toString()); // например, если нажать на кнопку "New Add", то после обновления страницы, будет режим "RecipesForm.tsx"
+    //sessionStorage.setItem('indexSubMenu', index.toString()); // например, если нажать на кнопку "New Add", то после обновления страницы, будет режим "RecipesForm.tsx"
     // redux-toolkit
     dispatch(readingIndexSubMenu(index));
     // console.log()
   };
   // получим созданную в форме id графика (в MealscheduleForm.tsx и изменненую в ReduxTK)
-  const id = localStorage.getItem('idMealschedules');
-  // console.log(id)
+  // const id = localStorage.getItem('idMealschedules');
   //! пустые данные
   const [data, setData] = useState<IMealscheduleRepository | Object>({});
+  const [id, setId] = useState<number>(); // id для кнопки удалить (removeMealSchedule)
 
-  // получить по id 
+  // получить объект графика из массива[0]
   const getMealSchedule = async () => {
-    const response = await MealScheduleService.getOne(id);
-    // console.log(data);
-    //! присавивание данных полученных с сервера
-    setData(response);
+    const response = await MealScheduleService.getAll();
+    // console.log(response);
+    if (response.length !== 0) { // если есть график в БД (не удален)
+      setData(response[0]); // в массиве таблицы графики - есть только один график, т.к. (@OneByOne: MedCalendar-backend\src\mealschedule\entities\mealschedule.entity.ts)
+      setId(response[0].id) // id для кнопки удалить (removeMealSchedule)
+    }
+
     return data;
   };
   useEffect(() => {
     getMealSchedule();
   }, []);
 
-  // удалить по id
+  // удалить по id, который получаем запросе, если есть график - если нет графика, то и кнопка не показывается
   const removeMealSchedule = async () => {
     try {
       const response = await MealScheduleService.removeOne(id);
       if (response) {
         setData({}); // пустые данные с state
         toast.success('Вы удалили график');
-        localStorage.removeItem('idMealschedules') // очистить в localStorage
+        // localStorage.removeItem('idMealschedules') // очистить в localStorage
       }
     } catch (err: any) {
       const error = await err.response?.data.message; // если есть response то ...
@@ -70,7 +73,7 @@ const MealscheduleList: FC = () => {
     try {
       const response = await MealScheduleService.removeOne(id);
       if (response) {
-        setData({}); // пустые данные с state
+        setData({id: null}); // пустые данные с state
         localStorage.removeItem('idMealschedules') // очистить в localStorage
         dispatch(readingIndexSubMenu(0)); // перенаправление на 'Add new'
         toast.success('Пересоздайте график');
@@ -81,21 +84,6 @@ const MealscheduleList: FC = () => {
       toast.error(error?.toString());
     }
   }
-
-  // update
-  // const updateMealSchedule = async (data: IMealSchedule) => {
-  //   try {
-  //     const response = await MealScheduleService.updateOne(id, data);
-  //     if (response) {
-  //       dispatch(readingIndexSubMenu(0)); // перенаправление на 'Add new'
-  //       toast.success('Пересоздайте график');
-  //       return response;
-  //     }
-  //   } catch (err: any) {
-  //     const error = await err.response?.data.message; // если есть response то ...
-  //     toast.error(error?.toString());
-  //   }
-  // }
 
 
   return (
