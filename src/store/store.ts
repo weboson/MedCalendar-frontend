@@ -8,7 +8,6 @@ import arrWarningReducer from './features/arrWarningSlice'
 import chosenMedicineReducer from './features/chosenMedicineDaySlice' // for Day (recipte window)
 import indexSubMenuReducer from './features/indexSubMenuSlice' // for Day (recipte window)
 import userReducer from './features/userSlice' // авторизирован или нет
-import idMealschedulesReducer from './features/idMealschedulesSilce'
 import toggleReducer from './features/toggleButtonsMonitorSlice'
 
 
@@ -27,7 +26,6 @@ export const store = configureStore({
     chosenMedicine: chosenMedicineReducer, // содержание Recipte окна для Day (обработчик в DayUsingMedicines.tsx)
     user: userReducer, // авторизирован ли user или нет
     // response server
-    idMealschedules: idMealschedulesReducer,
     // перключатель (реагирующий <, today, >) для подгрузки новых данных для DayGrid, Week
     toggle: toggleReducer,
   },

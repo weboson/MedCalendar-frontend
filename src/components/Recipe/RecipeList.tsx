@@ -23,7 +23,7 @@ interface IProps {
 const RecipeList: FC<IProps> = ({ limit = 10 }) => {
 
 
-  //! для пагинации: https://youtu.be/7tTtLfw-acU?list=PLkUJHNMBzmtQj5qvTCqn0uMXFDG4ENiwf&t=4142
+  // для пагинации: https://youtu.be/7tTtLfw-acU?list=PLkUJHNMBzmtQj5qvTCqn0uMXFDG4ENiwf&t=4142
   // получаю порциями (limit), а не все (GetAll в Day и Week)
   const [recipes, setRecipes] = useState<IRecipeRepository[]>([]);
   const [currentPage, setCurrentPage] = useState<number>(1); // текущая страница

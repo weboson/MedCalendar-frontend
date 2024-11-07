@@ -19,6 +19,19 @@ export const MealScheduleService = {
         return data
     },
 
+
+    //! используется (раньше использовался getOne(id), но id хранилось только на localStorage одного ПК создавший график)
+    // получить все, хотя сущность график будет только один (@OneByOne: MedCalendar-backend\src\mealschedule\entities\mealschedule.entity.ts)
+    // http://localhost:3000/api/mealschedules
+    async getAll(): Promise<Array<IMealscheduleRepository> | undefined> { // используется в client\src\App.tsx
+        const { data } = await instance.get<IMealscheduleRepository>(`mealschedules`, {
+            headers: {
+                Authorization: `Bearer ` + getTokenFromLocalStorage() || '' // при любом (кроме регистрации) обращении к server достаем из отправляем токен (так требует @UseGuards(JwtAuthGuard) в server\src\auth\auth.controller.ts)
+            }
+        })
+        if (data) return data
+    },
+
     // получить (по id) созданный график (относящиеся к текущему авторизированному user)
     async getOne(id: string): Promise<IMealscheduleRepository | undefined> { // используется в client\src\App.tsx
         const { data } = await instance.get<IMealscheduleRepository>(`mealschedules/mealschedule/${+id}`, {
@@ -31,7 +44,7 @@ export const MealScheduleService = {
 
 
     // не используется - проще удалять и создавать. (просто оставил для справки)
-    async updateOne(id: string, mealschedule: IMealSchedule): Promise<IMealscheduleRepository | undefined> { 
+    async updateOne(id: string, mealschedule: IMealSchedule): Promise<IMealscheduleRepository | undefined> {
         const { data } = await instance.patch<IMealscheduleRepository>(`mealschedules/mealschedule/${+id}`, mealschedule, {
             headers: {
                 Authorization: `Bearer ` + getTokenFromLocalStorage() || '' // при любом (кроме регистрации) обращении к server достаем из отправляем токен (так требует @UseGuards(JwtAuthGuard) в server\src\auth\auth.controller.ts)

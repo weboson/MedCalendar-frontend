@@ -158,19 +158,14 @@ const WeekGrid: FC<IProps> = ({ currentDate }) => {
   // если пустой массива, то при 1-й загрузке
 
   //! Получение данных для MealSchedule (график питания: moon/son & icon food)
-  // переключатель (реагирующий <, today, >) для подгрузки новых данных для Week и DayGrid
-  // const toggle = useAppSelector((state) => state.toggle);
-  // получим созданную в форме id графика (в MealscheduleForm.tsx и изменненую в ReduxTK)
-  const idMeal = '' + localStorage.getItem('idMealschedules');
-  // console.log(idMeal);
   //* метод получения данных
-  const getMealSchedule = async (id: string) => {
+  const getMealSchedule = async () => {
     try {
-      const response = await MealScheduleService.getOne(id);
+      const response = await MealScheduleService.getAll();
       if (response) {
         // console.log(response)
         //* устанавливаем полученные с БД данные в: первые и последние питания на weekday/weekend
-        setDataMealSchedule(response); // исходные данные
+        setDataMealSchedule(response[0]); // исходные данные
         toast.success('График питания: загружен');
         return response;
       }
@@ -182,7 +177,7 @@ const WeekGrid: FC<IProps> = ({ currentDate }) => {
   };
   // toggle- перключатель (реагирующий <, today, >) для подгрузки новых данных для DayGrid, Week
   useEffect(() => {
-    getMealSchedule(idMeal);
+    getMealSchedule();
   }, []);
 
   return (
