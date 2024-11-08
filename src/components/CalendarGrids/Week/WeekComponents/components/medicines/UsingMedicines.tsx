@@ -149,7 +149,7 @@ const UsingMedicines: FC<IProps> = memo(
           break;
 
         // ---------------------------------
-        case 'first breakfast': //============================= от первого завтрака
+        case 'firstBreakfast': //============================= от первого завтрака
           return (
             <div
               onMouseOver={hoverMouseOnMedicine}
@@ -170,7 +170,7 @@ const UsingMedicines: FC<IProps> = memo(
 
           break;
         // ---------------------------------
-        case 'last supper': //================================= от последнего ужина
+        case 'lastSupper': //================================= от последнего ужина
           return (
             <div
               onMouseOver={hoverMouseOnMedicine}
